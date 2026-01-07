@@ -15,7 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text-primary);
-  background: var(--background-color);
+  background: var(--background-white);
 }
 
 a {
@@ -83,7 +83,7 @@ button {
   --radius-lg: 12px;
   --radius-full: 9999px;
 
-  /* Breakpoints - for reference */
+  /* Breakpoints - Keep in sync with src/constants/breakpoints.ts */
   --breakpoint-mobile: 768px;
   --breakpoint-tablet: 1024px;
 }
