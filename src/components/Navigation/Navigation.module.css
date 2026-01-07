@@ -1,0 +1,120 @@
+.nav {
+  background: var(--background-white);
+  border-bottom: 1px solid var(--border-medium);
+  padding: var(--spacing-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background: var(--text-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--background-white);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.navTabs {
+  display: flex;
+  gap: var(--spacing-xl);
+  flex: 1;
+}
+
+.navTab {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.navTab:hover {
+  color: var(--primary-red);
+}
+
+.navTab.active {
+  color: var(--primary-red);
+  border-bottom-color: var(--primary-red);
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: transparent;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  padding: var(--spacing-xs) 0;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.menuButton:hover .hamburger span {
+  background: var(--primary-red);
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: var(--spacing-sm) 0;
+  }
+
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .navTabs {
+    display: none;
+  }
+
+  .logo {
+    width: 35px;
+    height: 35px;
+    font-size: var(--font-size-xs);
+  }
+
+  .menuButton {
+    display: flex;
+    font-size: var(--font-size-xs);
+  }
+
+  .menuText {
+    display: none;
+  }
+
+  .hamburger {
+    width: 28px;
+  }
+}

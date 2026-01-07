@@ -1,6 +1,6 @@
 .container {
   padding: var(--spacing-lg);
-  max-width: 1200px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
 }
 
@@ -17,56 +17,29 @@
   margin-bottom: var(--spacing-md);
 }
 
-.modelsList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--spacing-lg);
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .main {
+    gap: var(--spacing-md);
+  }
+
+  .title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
+  }
 }
 
-.modelCard {
-  padding: var(--spacing-md);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  background: var(--background-white);
-  transition: box-shadow 0.2s ease;
+@media (max-width: 560px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
 }
 
-.modelCard:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.modelName {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-dark);
-  margin-bottom: var(--spacing-xs);
-}
-
-.modelInfo {
-  font-size: var(--font-size-base);
-  color: var(--text-secondary);
-  margin: var(--spacing-xs) 0;
-}
-
-.modelPrice {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--primary-red);
-  margin-top: var(--spacing-sm);
-}
-
-.modelImageContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-  margin: var(--spacing-md) 0;
-}
-
-.modelImage {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: contain;
-  border-radius: var(--radius-sm);
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
 }

@@ -1,33 +1,28 @@
-import { fetchModels } from '@/services/api';
-import Image from 'next/image';
+import type { Metadata } from 'next';
+import { fetchVehicles } from '@/services/api';
+import VehiclesView from '@/components/VehiclesView/VehiclesView';
 import styles from './page.module.css';
-import { IMAGE_SIZES } from '@/constants/breakpoints';
+
+export const metadata: Metadata = {
+  title: 'Modelos Toyota | Autos, SUVs y Pickups',
+  description: 'Descubrí nuestra línea completa de vehículos Toyota: Corolla, Hilux, Rav4 y más. Compará precios y características de todos nuestros modelos.',
+  keywords: ['Toyota', 'autos', 'SUVs', 'pickups', 'Corolla', 'Hilux', 'Rav4', 'vehículos'],
+  openGraph: {
+    title: 'Modelos Toyota | Toda la línea de vehículos',
+    description: 'Explorá la línea completa de vehículos Toyota. Encontrá el auto perfecto para vos.',
+    type: 'website',
+    locale: 'es_AR',
+  },
+};
 
 export default async function Home() {
-  const models = await fetchModels();
+  const vehicles = await fetchVehicles();
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>Modelos Toyota</h1>
-        <div className={styles.modelsList}>
-          {models.map((model) => (
-            <div key={model.id} className={styles.modelCard}>
-              <h2 className={styles.modelName}>{model.name}</h2>
-              <p className={styles.modelInfo}> {model.year} | ${model.price.toLocaleString('es-AR')}</p>
-              <div className={styles.modelImageContainer}>
-                <Image
-                  src={model.photo}
-                  alt={`${model.name} ${model.year}`}
-                  width={300}
-                  height={200}
-                  className={styles.modelImage}
-                  sizes={IMAGE_SIZES}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+        <h1 className={styles.title}>Descubrí todos los modelos</h1>
+        <VehiclesView vehicles={vehicles} />
       </main>
     </div>
   );

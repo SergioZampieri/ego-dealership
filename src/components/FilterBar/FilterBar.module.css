@@ -1,0 +1,231 @@
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.filterSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.filterContainer {
+  position: relative;
+}
+
+.filterLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-dark);
+  margin-right: var(--spacing-xl);
+}
+
+.desktopOnly {
+  display: flex;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.filterButton:hover {
+  color: var(--text-dark);
+  transform: translateY(-1px);
+}
+
+.filterButton.active {
+  color: var(--text-dark);
+  background: var(--background-gray);
+  transform: scale(1.05);
+}
+
+.sortContainer {
+  position: relative;
+}
+
+.sortButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text-dark);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sortButton:hover {
+  color: var(--primary-red);
+}
+
+.sortButton:hover .dropdownArrow {
+  color: var(--primary-red);
+}
+
+.dropdownArrow {
+  font-size: 10px;
+  color: var(--text-dark);
+  transition: color 0.2s ease;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  right: 0;
+  background: var(--background-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.dropdownOption {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  color: var(--text-dark);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdownOption:hover {
+  background: var(--background-gray-light);
+}
+
+.dropdownOption.selected {
+  font-weight: var(--font-weight-medium);
+  background: var(--background-gray);
+}
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .filterBar {
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .filterSection {
+    gap: var(--spacing-sm);
+  }
+
+  .filterLabel,
+  .sortButton {
+    font-size: var(--font-size-xs);
+    margin-right: var(--spacing-xs);
+  }
+
+  .filters {
+    gap: var(--spacing-sm);
+  }
+
+  .filterButton {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .dropdown {
+    min-width: 180px;
+  }
+
+  .dropdownOption {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+@media (max-width: 768px) {
+  .filterBar {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) 0;
+  }
+
+  .desktopOnly {
+    display: none !important;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .filterSection {
+    gap: var(--spacing-xs);
+  }
+
+  .filterLabel {
+    font-size: var(--font-size-xs);
+  }
+
+  .filters {
+    gap: var(--spacing-xs);
+  }
+
+  .filterButton {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .sortButton {
+    font-size: var(--font-size-xs);
+  }
+
+  .dropdownArrow {
+    font-size: 8px;
+  }
+
+  .filterContainer .dropdown {
+    right: auto;
+    left: 0;
+    min-width: 150px;
+    max-width: calc(100vw - var(--spacing-lg));
+  }
+
+  .sortContainer .dropdown {
+    left: auto;
+    right: 0;
+    min-width: 150px;
+    max-width: calc(100vw - var(--spacing-lg));
+  }
+
+  .dropdownOption {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
