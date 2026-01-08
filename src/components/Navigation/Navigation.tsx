@@ -6,6 +6,7 @@ import styles from './Navigation.module.css';
 
 export default function Navigation() {
   const pathname = usePathname();
+  const isDetailPage = pathname.startsWith('/models/');
 
   return (
     <nav className={styles.nav}>
@@ -21,12 +22,11 @@ export default function Navigation() {
           >
             Modelos
           </Link>
-          <Link
-            href="/ficha-de-modelo"
-            className={`${styles.navTab} ${pathname === '/ficha-de-modelo' ? styles.active : ''}`}
-          >
-            Ficha de modelo
-          </Link>
+          {isDetailPage && (
+            <span className={`${styles.navTab} ${styles.active}`}>
+              Ficha de modelo
+            </span>
+          )}
         </div>
 
         <button
