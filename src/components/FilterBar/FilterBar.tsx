@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
 import { FilterCategory, SortOption, FILTER_LABELS, SORT_LABELS } from '@/types/filters';
+import { useDropdown } from '@/hooks/useDropdown';
 import styles from './FilterBar.module.css';
 
 interface FilterBarProps {
@@ -17,37 +17,32 @@ export default function FilterBar({
   onFilterChange,
   onSortChange,
 }: FilterBarProps) {
-  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
-  const sortDropdownRef = useRef<HTMLDivElement>(null);
-  const filterDropdownRef = useRef<HTMLDivElement>(null);
+  // Use custom dropdown hook for both dropdowns
+  const {
+    isOpen: isSortOpen,
+    dropdownRef: sortRef,
+    toggle: toggleSort,
+    close: closeSort,
+  } = useDropdown();
+
+  const {
+    isOpen: isFilterOpen,
+    dropdownRef: filterRef,
+    toggle: toggleFilter,
+    close: closeFilter,
+  } = useDropdown();
 
   const filterOptions: FilterCategory[] = ['all', 'cars', 'pickups', 'suvs'];
   const sortOptions: SortOption[] = ['none', 'price-asc', 'price-desc', 'year-newest', 'year-oldest'];
 
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (sortDropdownRef.current && !sortDropdownRef.current.contains(event.target as Node)) {
-        setIsSortDropdownOpen(false);
-      }
-      if (filterDropdownRef.current && !filterDropdownRef.current.contains(event.target as Node)) {
-        setIsFilterDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   const handleSortSelect = (option: SortOption) => {
     onSortChange(option);
-    setIsSortDropdownOpen(false);
+    closeSort();
   };
 
   const handleFilterSelect = (filter: FilterCategory) => {
     onFilterChange(filter);
-    setIsFilterDropdownOpen(false);
+    closeFilter();
   };
 
   return (
@@ -69,16 +64,16 @@ export default function FilterBar({
       </div>
 
       {/* Mobile filter dropdown */}
-      <div className={`${styles.filterContainer} ${styles.mobileOnly}`} ref={filterDropdownRef}>
+      <div className={`${styles.filterContainer} ${styles.mobileOnly}`} ref={filterRef}>
         <button
-          className={styles.sortButton}
-          onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+          className={styles.dropdownButton}
+          onClick={toggleFilter}
         >
           Filtrar por
           <span className={styles.dropdownArrow}>▼</span>
         </button>
 
-        {isFilterDropdownOpen && (
+        {isFilterOpen && (
           <div className={styles.dropdown}>
             {filterOptions.map((filter) => (
               <button
@@ -94,16 +89,16 @@ export default function FilterBar({
       </div>
 
       {/* Sort dropdown */}
-      <div className={styles.sortContainer} ref={sortDropdownRef}>
+      <div className={styles.sortContainer} ref={sortRef}>
         <button
-          className={styles.sortButton}
-          onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+          className={styles.dropdownButton}
+          onClick={toggleSort}
         >
           Ordenar por
           <span className={styles.dropdownArrow}>▼</span>
         </button>
 
-        {isSortDropdownOpen && (
+        {isSortOpen && (
           <div className={styles.dropdown}>
             {sortOptions.map((option) => (
               <button

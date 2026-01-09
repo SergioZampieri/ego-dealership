@@ -79,7 +79,7 @@
   background: var(--primary-red);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .vehicleName {
     white-space: normal;
     overflow: visible;

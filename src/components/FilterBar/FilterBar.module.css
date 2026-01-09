@@ -69,7 +69,7 @@
   position: relative;
 }
 
-.sortButton {
+.dropdownButton {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
@@ -83,11 +83,11 @@
   transition: color 0.2s ease;
 }
 
-.sortButton:hover {
+.dropdownButton:hover {
   color: var(--primary-red);
 }
 
-.sortButton:hover .dropdownArrow {
+.dropdownButton:hover .dropdownArrow {
   color: var(--primary-red);
 }
 
@@ -133,7 +133,6 @@
   background: var(--background-gray);
 }
 
-
 @media (max-width: 1024px) and (min-width: 769px) {
   .filterBar {
     gap: var(--spacing-sm);
@@ -145,7 +144,7 @@
   }
 
   .filterLabel,
-  .sortButton {
+  .dropdownButton {
     font-size: var(--font-size-xs);
     margin-right: var(--spacing-xs);
   }
@@ -202,7 +201,7 @@
     padding: var(--spacing-xs) var(--spacing-sm);
   }
 
-  .sortButton {
+  .dropdownButton {
     font-size: var(--font-size-xs);
   }
 

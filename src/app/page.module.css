@@ -19,7 +19,7 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
   }
 
   .main {
@@ -29,17 +29,5 @@
   .title {
     font-size: var(--font-size-xl);
     margin-bottom: var(--spacing-sm);
-  }
-}
-
-@media (max-width: 560px) {
-  .container {
-    padding: var(--spacing-sm);
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: var(--spacing-sm);
   }
 }

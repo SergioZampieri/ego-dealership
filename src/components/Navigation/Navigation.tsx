@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { NAVIGATION_TEXT } from '@/constants/navigation';
 import styles from './Navigation.module.css';
 
 export default function Navigation() {
@@ -12,7 +13,7 @@ export default function Navigation() {
     <nav className={styles.nav}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          EGO
+          {NAVIGATION_TEXT.LOGO}
         </Link>
 
         <div className={styles.navTabs}>
@@ -20,20 +21,20 @@ export default function Navigation() {
             href="/"
             className={`${styles.navTab} ${pathname === '/' ? styles.active : ''}`}
           >
-            Modelos
+            {NAVIGATION_TEXT.MODELS_TAB}
           </Link>
           {isDetailPage && (
             <span className={`${styles.navTab} ${styles.active}`}>
-              Ficha de modelo
+              {NAVIGATION_TEXT.DETAIL_TAB}
             </span>
           )}
         </div>
 
         <button
           className={styles.menuButton}
-          aria-label="Menú"
+          aria-label={NAVIGATION_TEXT.MENU_ARIA_LABEL}
         >
-          <span className={styles.menuText}>Menú</span>
+          <span className={styles.menuText}>{NAVIGATION_TEXT.MENU_TEXT}</span>
           <span className={styles.hamburger}>
             <span></span>
             <span></span>

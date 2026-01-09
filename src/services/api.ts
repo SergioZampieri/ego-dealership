@@ -1,6 +1,5 @@
 import { Vehicle, VehicleDetails } from '@/types/vehicle';
-
-const API_BASE_URL = 'https://challenge.egodesign.dev/api';
+import { API_CONFIG } from '@/constants/config';
 
 /*
   Since this is a user-facing application with a Spanish UI, all error messages are in Spanish for consistency with the interface.
@@ -9,13 +8,13 @@ const API_BASE_URL = 'https://challenge.egodesign.dev/api';
 
 export async function fetchVehicles(): Promise<Vehicle[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/models/`, {
+    const response = await fetch(`${API_CONFIG.BASE_URL}/models/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      // Next.js cache strategy: revalidate every hour
-      next: { revalidate: 3600 },
+      // Next.js cache strategy
+      next: { revalidate: API_CONFIG.CACHE_REVALIDATE_SECONDS },
     });
 
     if (!response.ok) {
@@ -34,13 +33,13 @@ export async function fetchVehicles(): Promise<Vehicle[]> {
 
 export async function fetchVehicleById(id: number): Promise<VehicleDetails> {
   try {
-    const response = await fetch(`${API_BASE_URL}/models/${id}/`, {
+   const response = await fetch(`${API_CONFIG.BASE_URL}/models/${id}/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      // Next.js cache strategy: revalidate every hour
-      next: { revalidate: 3600 },
+      // Next.js cache strategy
+      next: { revalidate: API_CONFIG.CACHE_REVALIDATE_SECONDS },
     });
 
     if (!response.ok) {
