@@ -1,7 +1,8 @@
 .vehiclesList {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--spacing-lg);
+  column-gap: var(--spacing-lg);
+  row-gap: 0;
   animation: fadeIn 0.4s ease-in-out;
   width: 100%;
   max-width: 100%;
@@ -27,6 +28,7 @@
 @media (max-width: 768px) {
   .vehiclesList {
     grid-template-columns: repeat(1, 1fr);
-    gap: var(--spacing-md);
+    column-gap: var(--spacing-md);
+    row-gap: 0;
   }
 }

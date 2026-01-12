@@ -11,6 +11,24 @@ interface FilterBarProps {
   onSortChange: (sort: SortOption) => void;
 }
 
+// Helper function to format sort labels with bold keywords
+function formatSortLabel(option: SortOption): React.ReactNode {
+  const label = SORT_LABELS[option];
+
+  switch (option) {
+    case 'price-asc':
+      return <>De <strong>menor</strong> a <strong>mayor</strong> precio</>;
+    case 'price-desc':
+      return <>De <strong>mayor</strong> a <strong>menor</strong> precio</>;
+    case 'year-newest':
+      return <>Más <strong>nuevos</strong> primero</>;
+    case 'year-oldest':
+      return <>Más <strong>viejos</strong> primero</>;
+    default:
+      return label;
+  }
+}
+
 export default function FilterBar({
   currentFilter,
   currentSort,
@@ -106,7 +124,7 @@ export default function FilterBar({
                 onClick={() => handleSortSelect(option)}
                 className={`${styles.dropdownOption} ${currentSort === option ? styles.selected : ''}`}
               >
-                {SORT_LABELS[option]}
+                {formatSortLabel(option)}
               </button>
             ))}
           </div>
