@@ -1,11 +1,18 @@
 import { Metadata } from 'next';
-import { fetchVehicleById } from '@/services/api';
+import { fetchVehicles, fetchVehicleById } from '@/services/api';
 import { notFound } from 'next/navigation';
 import VehicleDetailView from '@/components/VehicleDetailView/VehicleDetailView';
 import styles from './page.module.css';
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateStaticParams() {
+  const vehicles = await fetchVehicles();
+  return vehicles.map((vehicle) => ({
+    id: vehicle.id.toString(),
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
