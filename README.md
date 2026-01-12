@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EGO Design - Toyota Models Challenge
 
-## Getting Started
+## Description
 
-First, run the development server:
+ Web application showcasing part of the EGO frontend challenge. The application features a vehicle catalog with filtering and sorting features.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+
+- **Next.js 15** - React framework with App Router
+- **React 19** - With Server and Client Components
+- **TypeScript** - Typing
+- **CSS Modules** - Component-scoped styling
+
+## Setup Instructions
+
+### Prerequisites
+
+- **Node.js** 18.17 or higher
+- **npm** package manager
+
+### Installation
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+3. **Open your browser**
+
+   Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
+
+### Deploy
+
+
+## Project Structure
+
+```
+ego-challenge/
+├── src/
+│   ├── app/                            # Next.js App Router
+│   │   ├── page.tsx                    # Home page (vehicle listing)
+│   │   ├── layout.tsx                  # Root layout with Navigation & Footer
+│   │   ├── globals.css                 # Global styles and CSS variables
+│   │   ├── loading.tsx                 # Loading state UI
+│   │   ├── error.tsx                   # Error state UI
+│   │   └── models/
+│   │       └── [id]/
+│   │           └── page.tsx            # Dynamic vehicle detail pages
+│   ├── components/
+│   │   ├── Navigation/                 # Navigation bar with hamburger menu
+│   │   ├── Footer/                     # Footer component
+│   │   ├── VehicleCard/                # Vehicle card for catalog view
+│   │   ├── FilterBar/                  # Category filters and sort dropdown
+│   │   ├── VehiclesView/               # Main vehicle listing container
+│   │   └── VehicleDetailView/          # Detail page components
+│   │       ├── VehicleHero.tsx         # Hero section with image & info
+│   │       ├── VehicleFeatures.tsx     # Horizontal scroll features
+│   │       └── VehicleHighlights.tsx   # Alternating image highlights
+│   ├── hooks/
+│   │   └── useDropdown.ts              # Dropdown state management hook
+│   ├── services/
+│   │   └── api.ts                      # API for vehicle data
+│   ├── types/
+│   │   ├── vehicle.ts                  # Vehicle type definitions
+│   │   └── filters.ts                  # Filter and sort types
+│   ├── utils/
+│   │   ├── filterUtils.ts              # Filter and sort logic
+│   │   └── formatters.ts               # Price and date formatting
+│   └── constants/
+│       ├── config.ts                   # API configuration & dimensions
+│       └── navigation.ts               # Navigation text constants
+├── public/                             # Static assets
+└── README.md                           # This file
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Reference
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application consumes data from the EGO Design challenge API:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Base URL**: `https://challenge.egodesign.dev/api/`
 
-## Learn More
+### Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+- `GET /models/` - Retrieve all vehicle models
+- `GET /models/{id}/` - Retrieve detailed information for a specific vehicle
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Implementation Details
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Filtering Logic
+- **Todos**: Displays all vehicles
+- **Autos**: Shows vehicles with segment "Sedan" or "Hatchback"
+- **Pickups y Comerciales**: Shows vehicles with segment "Pickups y Comerciales"
+- **SUVs y Crossovers**: Shows vehicles with segment "SUVs"
 
-## Deploy on Vercel
+### Sorting Options
+- **Nada**: Default API order (no sorting)
+- **De menor a mayor precio**: Price ascending
+- **De mayor a menor precio**: Price descending
+- **Más nuevos primero**: Year descending (newest first)
+- **Más viejos primero**: Year ascending (oldest first)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Responsive Breakpoints
+- **Mobile**: < 768px (1 column grid)
+- **Tablet**: 768px - 1024px (2 column grid)
+- **Desktop**: > 1024px (3 column grid)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Design Reference
+
+The UI design is based on the provided Figma mockups.
+
+## Development Notes
+
+- Server Components for data fetching
+- Client Components for interactive features
+- CSS Modules for scoped, maintainable styles
+- TypeScript for type safety across the codebase
+- Custom hooks for reusable logic
