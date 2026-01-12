@@ -15,7 +15,7 @@
 
 ### Prerequisites
 
-- **Node.js** 18.17 or higher
+- **Node.js** 20.9.0 or higher
 - **npm** package manager
 
 ### Installation
